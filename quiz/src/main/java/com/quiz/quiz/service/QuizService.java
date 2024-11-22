@@ -37,4 +37,13 @@ public class QuizService {
     public Quiz createQuiz(Quiz quiz) {
         return quizDao.saveQuiz(quiz);
     }
+
+    public String evaluateAnswer(String correctAnswer , String userAnswer){
+        if(correctAnswer.equals(userAnswer)){
+            return "correct";
+        }
+        else{
+            return "incorrect";
+        }
+    }
 }

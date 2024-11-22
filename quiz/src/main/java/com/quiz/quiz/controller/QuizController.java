@@ -30,8 +30,12 @@ public class QuizController {
         return quizService.getAllQuestions();
     }
 
-    @PostMapping
+    @PostMapping("/createQuiz")
     public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
         return ResponseEntity.ok(quizService.createQuiz(quiz));
+    }
+    @PostMapping("/submit")
+    public String submitAnswer(@RequestBody Quiz quiz){
+        return quizService.evaluateAnswer(quiz.getCorrectAnswer(),quiz.getUserAnswer());
     }
 }
