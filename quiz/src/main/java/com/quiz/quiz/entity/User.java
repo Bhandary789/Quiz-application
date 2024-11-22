@@ -17,12 +17,12 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
 @Builder
 @AllArgsConstructor
-@Table(name = "users")
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "users")
+@Entity
 public class User implements UserDetails {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -42,9 +42,13 @@ public class User implements UserDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    public User(UUID userId) {
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Example: Return a single authority (role)
+
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
